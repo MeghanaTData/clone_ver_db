@@ -7,7 +7,7 @@ resources:
           notebook_task:
             notebook_path: ../src/notebooks/notebook1.ipynb
             base_parameters:
-              env: ${var.env}
+              env: ${secrets.env}
               value1: 15
               value2: 10
             source: WORKSPACE
@@ -15,7 +15,7 @@ resources:
           notebook_task:
             notebook_path: ../src/notebooks/notebook2.ipynb
             base_parameters:
-              env: ${var.env}
+              env: ${secrets.env}
               value1: 30
               value2: 25
             source: WORKSPACE
