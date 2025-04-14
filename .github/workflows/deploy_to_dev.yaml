@@ -6,14 +6,12 @@ on:
   workflow_dispatch
 
 env:
-  DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
-  ARM_CLIENT_ID: ${{ secrets.SPN_CLIENT_ID }}
-  ARM_CLIENT_SECRET: ${{ secrets.SPN_SECRET_ID }}
-  ARM_TENANT_ID: ${{ secrets.SPN_TENANT_ID}}
+  DATABRICKS_HOST: ${{ vars.DATABRICKS_URL }}
+  DATABRCIKS_SECRET: ${{secrets.DATABRICKS_TOKEN}}
 
 jobs:
   deploy:
-    environment: env
+    environment: dev
     name: "Deploy bundle"
     runs-on: ubuntu-latest
 
@@ -24,7 +22,16 @@ jobs:
 
       - run: |
           databricks bundle validate -t "dev" --var="env=dev"
-
+          env:
+            DATABRICKS_HOST: ${{ vars.DATABRICKS_URL }}
+            DATABRCIKS_SECRET: ${{secrets.DATABRICKS_TOKEN}}
+            DATABRICKS_BUNDLE_ENV: dev    
+          
       - run: |
           databricks bundle deploy -t "dev" --var="env=dev"
+          env:
+            DATABRICKS_HOST: ${{ vars.DATABRICKS_URL }}
+            DATABRCIKS_SECRET: ${{secrets.DATABRICKS_TOKEN}}
+            DATABRICKS_BUNDLE_ENV: dev
+          
          
