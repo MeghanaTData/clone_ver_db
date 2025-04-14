@@ -11,9 +11,9 @@ resources:
               value1: 15
               value2: 10
             source: WORKSPACE
-      queue:
-        enabled: true
-        
+          queue:
+            enabled: true
+
         - task_key: Task2
           notebook_task:
             notebook_path: ../src/notebooks/notebook2.ipynb
@@ -22,8 +22,5 @@ resources:
               value1: 30
               value2: 25
             source: WORKSPACE
-      queue:
-        enabled: true
-
-
-
+          queue:
+            enabled: true
